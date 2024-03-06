@@ -1,4 +1,5 @@
 import requests
+import datetime
 
 url = "https://yahoo-weather5.p.rapidapi.com/weather"
 
@@ -25,5 +26,13 @@ print("Umidade:", current_observation['atmosphere']['humidity'])
 print("---------------------------")
 
 forecasts = info['forecasts']
-print("Dados de Previsão")
-print("Dia da semana:", forecasts['day'])
+for forecast in forecasts:
+    print("Dados de Previsão")
+    print("Dia:", forecast['day'])
+ # datetime.datetime.utcfromtimestamp(unix_timestamp) converte o Unix Timestamp (formato de representação de data e hora que é definido como o número de segundos decorridos desde a meia-noite (UTC) de 1º de janeiro de 1970) em um objeto datetime representando a data e hora correspondentes.
+    data_legivel = datetime.datetime.utcfromtimestamp(forecast['date'])
+    print("Data:", data_legivel)
+    print("Temperature Miníma:", forecast['low'])
+    print("Temperatura Máxima:", forecast['high'])
+    print("Clima:", forecast['text'])
+    print("-------------------------")
